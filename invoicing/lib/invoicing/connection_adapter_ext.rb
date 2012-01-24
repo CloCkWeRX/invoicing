@@ -7,7 +7,7 @@ module Invoicing
     # in a query.
     def self.conditional_function(condition, value_if_true, value_if_false)
       case ActiveRecord::Base.connection.adapter_name
-        when "MySQL"
+        when "MySQL", "Mysql2"
           "IF(#{condition}, #{value_if_true}, #{value_if_false})"
         when "PostgreSQL"
           "CASE WHEN #{condition} THEN #{value_if_true} ELSE #{value_if_false} END"
@@ -29,7 +29,7 @@ module Invoicing
     # a string suitable to be used as the contents of the <tt>GROUP BY</tt> clause.
     def self.group_by_all_columns(model_class)
       case ActiveRecord::Base.connection.adapter_name
-        when "MySQL"
+        when "MySQL", "Mysql2"
           model_class.quoted_table_name + "." +
             ActiveRecord::Base.connection.quote_column_name(model_class.primary_key)
         when "PostgreSQL"
