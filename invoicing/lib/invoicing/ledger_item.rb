@@ -726,7 +726,7 @@ module Invoicing
           summary = {:balance => BigDecimal('0'), :currency => currency}
           
           {:sales => 1, :purchases => -1, :sale_receipts => -1, :purchase_payments => 1}.each_pair do |field, factor|
-            summary[field] = BigDecimal(row[field])
+            summary[field] = BigDecimal(row[field].to_s)
             summary[:balance] += BigDecimal(factor.to_s) * summary[field]
           end
           
