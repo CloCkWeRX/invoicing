@@ -209,7 +209,7 @@ class LedgerItemTest < Test::Unit::TestCase
       uuid_gem_available = false
     end
     if uuid_gem_available
-      assert_match /^[0-9a-f]{8}\-[0-9a-f]{4}\-[0-9a-f]{4}\-[0-9a-f]{4}\-[0-9a-f]{12}$/, record.uuid2
+      assert_match(/^[0-9a-f]{8}\-[0-9a-f]{4}\-[0-9a-f]{4}\-[0-9a-f]{4}\-[0-9a-f]{12}$/, record.uuid2)
     else
       assert record.uuid2.blank?
       puts "Warning: uuid gem not installed -- not testing UUID generation"
